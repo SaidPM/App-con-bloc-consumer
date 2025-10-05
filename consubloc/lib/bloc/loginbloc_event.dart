@@ -1,11 +1,18 @@
-part of 'loginbloc_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class LoginblocEvent {}
+sealed class BlocLoginEvent extends Equatable {
+  const BlocLoginEvent();
 
-final class Veriflogin extends LoginblocEvent{
-  final String email;
-  final String password;
+  @override
+  List<Object> get props => [];
+}
 
-  Veriflogin({required this.email, required this.password});
+final class IniciarSesion extends BlocLoginEvent {
+  final String correo;
+  final String contrasena;
+
+  const IniciarSesion(this.correo,this.contrasena);
+
+  @override
+  List<Object> get props => [correo, contrasena];
 }

@@ -1,12 +1,11 @@
-import 'package:consubloc/bloc/carlbloc_bloc.dart';
-import 'package:consubloc/bloc/loginbloc_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'pages/carscreen.dart';
+import 'bloc/loginbloc_bloc.dart';
+import 'bloc/loginbloc_state.dart';
 import 'pages/failureview.dart';
+import 'pages/initialview.dart';
 import 'pages/loadingview.dart';
-import 'pages/loginscreen.dart';
+import 'pages/widgetdatos.dart';
 
 
 void main() {
@@ -15,40 +14,31 @@ void main() {
 
 class Pio extends StatelessWidget {
   const Pio({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => LoginblocBloc()),
-        BlocProvider(create: (_) => CarlblocBloc()),
+        BlocProvider(create: (_) => BlocLoginBloc()),
       ],
       child: MaterialApp(
-        title: 'Car App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          useMaterial3: true,
-          scaffoldBackgroundColor: Colors.blue[50],
-        ),
         debugShowCheckedModeBanner: false,
-        home: BlocConsumer<LoginblocBloc, LoginblocState>(
+        home: BlocConsumer<BlocLoginBloc, BlocLoginState>(
           listener: (context, state) {
-            if (state is LoginblocSuccess) {
-              Navigator.pushReplacement(
+            if (state is HomeSuccess) {
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const CarScreen()),
+                MaterialPageRoute(builder: (_) => const Suceso()),
               );
             }
           },
           builder: (context, state) {
-            if (state is LoginblocLoading) {
-              return const AuthLoadingView();
-            } else if (state is LoginblocFailure) {
-              return AuthFailureView(
-                error: state.error,
-                // Callback para reintentar desde AuthFailureView
-              );
+            if (state is HomeLoading) {
+              return const LoadingView();
+            } else if (state is HomeFailure) {
+              return const FailureView();
             } else {
-              return const LoginScreen();
+              return const InitialView();
             }
           },
         ),
