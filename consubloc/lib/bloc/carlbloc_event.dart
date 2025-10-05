@@ -1,6 +1,10 @@
-part of 'carlbloc_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class CarlblocEvent {}
+sealed class CarBlocEvent extends Equatable {
+  const CarBlocEvent();
 
-final class Carconse extends CarlblocEvent{}
+  @override
+  List<Object> get props => [];
+}
+
+final class Cargardata extends CarBlocEvent {}

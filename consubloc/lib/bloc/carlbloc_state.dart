@@ -1,20 +1,20 @@
-part of 'carlbloc_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class CarlblocState {}
-
-final class CarlblocInitial extends CarlblocState {}
-
-final class CarlblocLoading extends CarlblocState {}
-
-final class CarlblocSuccess extends CarlblocState {
-  final Map<String, String> carData;
-  CarlblocSuccess(this.carData);
-}
-
-final class CarlbloFailure extends CarlblocState {
-  final String error;
-  CarlbloFailure(this.error);
+sealed class CarBlocState extends Equatable {
+  const CarBlocState();
+  
+  @override
+  List<Object> get props => [];
 }
 
 
+class LoadInitial extends CarBlocState {}
+class LoadLoading extends CarBlocState {}
+class LoadSuccess extends CarBlocState {
+  final Map<String, dynamic> data;
+  const LoadSuccess(this.data);
+
+  @override
+  List<Object> get props => [data];
+}
+class LoadFailure extends CarBlocState {}

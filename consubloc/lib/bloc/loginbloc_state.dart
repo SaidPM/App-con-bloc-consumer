@@ -1,15 +1,13 @@
-part of 'loginbloc_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-sealed class LoginblocState {}
-
-final class LoginblocInitial extends LoginblocState {}
-
-final class LoginblocLoading extends LoginblocState{}
-
-final class LoginblocSuccess extends LoginblocState{}
-
-final class LoginblocFailure extends LoginblocState{
-  final String error;
-  LoginblocFailure(this.error);
+sealed class BlocLoginState extends Equatable {
+  const BlocLoginState();
+  
+  @override
+  List<Object> get props => [];
 }
+
+class HomeInitial extends BlocLoginState {}
+class HomeLoading extends BlocLoginState {}
+class HomeSuccess extends BlocLoginState {}
+class HomeFailure extends BlocLoginState {}
