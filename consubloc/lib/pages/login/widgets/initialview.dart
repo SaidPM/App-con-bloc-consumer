@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/loginbloc_bloc.dart';
-import '../bloc/loginbloc_event.dart';
-
+import '../cubit/cubitlogin_cubit.dart';
 
 class InitialView extends StatelessWidget {
   const InitialView({super.key});
@@ -82,12 +80,10 @@ class InitialView extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      context.read<BlocLoginBloc>().add(
-                            IniciarSesion(
-                              correoController.text,
-                              contraController.text,
-                            ),
-                          );
+                      context.read<CubitloginCubit>().iniciarSesion(
+                        correoController.text,
+                        contraController.text,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,
@@ -97,7 +93,10 @@ class InitialView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       elevation: 8,
-                      textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     child: const Text('Iniciar Sesión'),
                   ),
