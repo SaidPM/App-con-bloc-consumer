@@ -1,15 +1,16 @@
-import 'package:equatable/equatable.dart';
+part of 'car_bloc_bloc.dart';
 
 sealed class CarBlocState extends Equatable {
   const CarBlocState();
-  
+
   @override
   List<Object> get props => [];
 }
 
-
 class LoadInitial extends CarBlocState {}
+
 class LoadLoading extends CarBlocState {}
+
 class LoadSuccess extends CarBlocState {
   final Map<String, dynamic> data;
   const LoadSuccess(this.data);
@@ -17,4 +18,5 @@ class LoadSuccess extends CarBlocState {
   @override
   List<Object> get props => [data];
 }
+
 class LoadFailure extends CarBlocState {}

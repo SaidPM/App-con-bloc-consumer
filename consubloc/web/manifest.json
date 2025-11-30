@@ -1,6 +1,6 @@
 {
-    "name": "consubloc",
-    "short_name": "consubloc",
+    "name": "dioapp",
+    "short_name": "dioapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
